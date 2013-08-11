@@ -8,8 +8,9 @@
 // ==/UserScript==
 
 (function() {
+	var path = "//div[@class='spaceit_pad']/a[@class='lightLink']/small";
 	if (document.URL.match(/fansub\-groups/)) {
-		var path = "//div[@class='spaceit_pad']/strong";
+		path = "//div[@class='spaceit_pad']/strong";
 		var ts = document.evaluate(path, document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
 		var totA = ts.snapshotItem(0).innerHTML.match(/[0-9]+/);
 		var totD = ts.snapshotItem(1).innerHTML.match(/[0-9]+/);
@@ -29,7 +30,7 @@
 		tsA.innerHTML = tsA.innerHTML.concat(tpA);
 		tsD.innerHTML = tsD.innerHTML.concat(tpD);
 		path = "//div[@class='spaceit_pad']/small";
-	} else if (document.URL.match(/anime/)) path = "//div[@class='spaceit_pad']/a[@class='lightLink']/small";
+	}
 	var subs = document.evaluate(path, document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
 	var searchRE = /[0-9]+ of [0-9]+ users approve/;
 	for (var i=0;i<subs.snapshotLength;i++) {
